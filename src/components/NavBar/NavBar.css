@@ -1,0 +1,90 @@
+.navbar {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;            
+  padding: 1rem 2rem;
+  width: 100%;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo-pic {
+  height: 25px; 
+}
+
+.navbar-mid {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin: 0 1.2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #F2C063;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #f2e0be;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center; 
+}
+
+.profile-pic {
+  width: 50px;
+  border-radius: 50%; 
+  object-fit: cover;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.username-button {
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0);
+  color: black;
+  border-style: solid;
+  border-width: 0.8px;
+  border-color: black;
+  border-radius: 9999px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease;
+}
+
+.username-button:hover {
+  background-color: #464646; 
+}
+
+.username {
+  font-weight: 500;
+  color: inherit; 
+  margin-right: 8px;
+}
+
+.dropdown-icon {
+  font-size: 0.8rem;
+}
