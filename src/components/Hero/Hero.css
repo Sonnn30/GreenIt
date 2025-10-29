@@ -1,18 +1,18 @@
 /* src/components/Hero/Hero.css */
 
 .hero-section {
-  display: flex; /* Menggunakan flexbox untuk 2 kolom */
+  display: flex; 
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  min-height: calc(100vh - 80px); /* Isi sisa layar di bawah navbar */
-  padding: 2rem 4rem; /* Beri jarak di sisi */
-  gap: 2rem; /* Jarak antar kolom */
+  min-height: calc(100vh - 80px);
+  padding: 2rem 4rem; 
+  gap: 2rem; 
 }
 
-/* Kolom Kiri */
+
 .hero-text {
-  flex: 1; /* Mengambil 1 bagian dari ruang */
+  flex: 1; 
   display: flex;
   flex-direction: column;
 }
