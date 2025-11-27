@@ -1,9 +1,13 @@
 import React from "react"
+import { useNavigate } from 'react-router-dom'
 import './Hero.css'
 import recycleImage from '../../assets/recycle.png'
 import heroImage from '../../assets/heroimage.png'
 
 function Hero(){
+
+    const navigate = useNavigate();
+
     return(
         <section className="hero-section">
 
@@ -14,7 +18,7 @@ function Hero(){
                     Did you know that propre waste sorting
                     can reduce landfil waste by up to 60%
                 </p>
-                <button className="scan-button">
+                <button className="scan-button" onClick={() => navigate('/camera')}>
                     <span className="scan-icon">&#x26F6;</span> 
                     Scan Now
                 </button>
