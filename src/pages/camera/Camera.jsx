@@ -1,5 +1,4 @@
 import { useRef, useState, useEffect } from "react";
-// Import the page styling
 import './Camera.css'
 
 function CameraPage() {
@@ -84,7 +83,7 @@ function CameraPage() {
             {/* The primary element that swaps content (camera vs. result) */}
             <div className="camera-content-area">
                 
-                {/* 1. Camera Stream (Visible by default) */}
+                {/*Camera Stream (Visible by default) */}
                 <div ref={cameraStreamRef} className="camera-stream">
                     <div id="monitor">
                         <div className="screen">
@@ -94,7 +93,7 @@ function CameraPage() {
                     </div>
                 </div>
 
-                {/* 2. Result Section (Visible when hasPhoto is true) */}
+                {/*Result Section (Visible when hasPhoto is true) */}
                 <div className="result">
                     <canvas ref={photoRef}></canvas>
                 </div>

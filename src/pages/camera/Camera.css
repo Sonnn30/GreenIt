@@ -6,29 +6,25 @@ body, html {
     /* font-family: 'Inter', sans-serif; */
 }
 
-/* --- 1. Main Camera Container (Vertical Flexbox for layout) --- */
+/* Main Camera Container (Vertical Flexbox for layout)*/
 .camera-container {
     display: flex;
     flex-direction: column;
     height: 100vh;
     width: 100vw;
- /* Dark background like in the image */
     overflow: hidden; /* Prevent scrolling */
 }
 
-/* --- 2. Camera Content Area (The middle section containing video/canvas) --- */
+/* Camera Content Area (The middle section containing video/canvas)*/
 .camera-content-area {
-    /* Takes up all available space in the middle */
     flex-grow: 1; 
-    
-    /* Centers the contents (camera-stream and result) */
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative; /* Anchor for absolute positioning of monitor/canvas */
+    position: relative;
 }
 
-/* --- 3. Camera Stream Wrapper & Result (Positioned for no jumping) --- */
+/*Camera Stream Wrapper & Result (Positioned for no jumping)*/
 
 /* Both the camera stream and the result canvas occupy the exact same, centered space */
 .camera-stream,
@@ -53,11 +49,11 @@ body, html {
        the canvas will automatically be the right size. */
 }
 
-/* --- 4. Fixed Button Bar (The Footer) --- */
+/* Fixed Button Bar (The Footer)*/
 .camera-footer {
     width: 100%;
     padding: 20px 0;
-    background-color: #222; /* Darker bar at the bottom */
+    background-color: #222;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -79,7 +75,7 @@ body, html {
 
 /* Style for the main "Scan" button */
 .take-photo-button {
-    background-color: #4CAF50; /* Green/Scan color */
+    background-color: #4CAF50;
     color: white;
     min-width: 200px;
 }
@@ -100,14 +96,14 @@ body, html {
     background-color: #666;
 }
 .result-buttons .process-button {
-    background-color: #2196F3; /* Blue for the main action */
+    background-color: #2196F3; /*main action */
 }
 .result-buttons .process-button:hover {
     background-color: #0b7dda;
 }
 
 
-/* === Camera monitor (Centered content) === */
+/*Camera monitor (Centered content)*/
 #monitor {
     position: relative;
     width: 400px;

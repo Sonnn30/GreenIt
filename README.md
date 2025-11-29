@@ -1,3 +1,8 @@
+python model_server.py
+node backend/server.js
+npm run dev
+
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
