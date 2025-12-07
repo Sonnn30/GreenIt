@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react"; // 1. Impor useState dan useEffect
+import React, { useState, useEffect } from "react";
+import { Link, NavLink } from 'react-router-dom'; 
 import './NavBar.css';
 import logoGreenIt from '../../assets/GreenItLogo.png';
-import profileImage from '../../assets/userLogo.png'; // Pastikan path profil benar
+import profileImage from '../../assets/userLogo.png'; 
 
 function NavBar(){
-    // state untuk melacak status scroll
     const [isScrolled, setIsScrolled] = useState(false);
+    
+    // 1. State untuk Menu Mobile
+    const [menuOpen, setMenuOpen] = useState(false);
 
-    // useEffect untuk menambahkan event listener saat scroll
     useEffect(() => {
-        // Fungsi ini akan dijalankan setiap kali user scroll
         const handleScroll = () => {
-            // jika posisi scroll vertikal (window.scrollY) > 10px, set isScrolled jadi true
             if (window.scrollY > 10) {
                 setIsScrolled(true);
             } else {
@@ -19,36 +19,64 @@ function NavBar(){
             }
         };
 
-        // tambahkan event listener saat komponen pertama kali dirender
         window.addEventListener('scroll', handleScroll);
 
-        // hapus event listener saat komponen dihancurkan (unmount)
-        // untuk mencegah memory leak
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, []); // array kosong [] berarti efek ini hanya berjalan sekali (saat mount)
+    }, []); 
 
-    // tambahkan class 'scrolled' secara kondisional
     return(
-        <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+        <nav className={`navbar ${isScrolled || menuOpen ? 'scrolled' : ''}`}>
             <div className="nav-left">
-                <img src={logoGreenIt} alt="Logo" className="logo-pic"/>
+                <Link to="/">
+                    <img src={logoGreenIt} alt="Logo" className="logo-pic"/>
+                </Link>
             </div>
-            <div className="navbar-mid">
+            
+            <div className={`navbar-mid ${menuOpen ? "open" : ""}`}>
                 <ul className="nav-links">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/">Tips</a></li>
-                    <li><a href="/">Bins</a></li>
-                    <li><a href="/">About</a></li>
+                    <li>
+                        <NavLink 
+                            to="/" 
+                            className={({ isActive }) => isActive ? "active-link" : ""}
+                            onClick={() => setMenuOpen(false)} // Tutup menu saat diklik
+                        >
+                            Home
+                        </NavLink>
+                    </li>
+                    
+                    <li>
+                        <NavLink 
+                            to="/scan-history" 
+                            className={({ isActive }) => isActive ? "active-link" : ""}
+                            onClick={() => setMenuOpen(false)}
+                        >
+                            Scan History
+                        </NavLink>
+                    </li>
+                    
+                    <li>
+                        <NavLink to="/" onClick={() => setMenuOpen(false)}>Bins</NavLink>
+                    </li>
+                    
+                    <li>
+                        <a href="/#about" onClick={() => setMenuOpen(false)}>About</a>
+                    </li>
                 </ul>
             </div>
+            
             <div className="navbar-right">
                 <img src={profileImage} alt="Profile" className="profile-pic"/>
-                <button className="username-button">
+                
+                <button className="username-button desktop-only">
                     <span className="username">nama user</span>
                     <span className="dropdown-icon">▾</span>
                 </button>
+  
+                <div className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+                    {menuOpen ? "✕" : "☰"}
+                </div>
             </div>
         </nav>
     );
