@@ -1,17 +1,19 @@
-
 .hero-section {
     display: flex; 
     align-items: center;
     justify-content: space-between;
     width: 100%;
     min-height: calc(100vh - 80px);
-    padding: 0rem 4rem;
+    padding: 5rem 4rem;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .hero-text {
     flex: 1; 
     display: flex;
     flex-direction: column;
+    z-index: 1; 
 }
 
 .hero-text h1, .hero-text h2 {
@@ -20,17 +22,19 @@
     font-weight: 700;
     line-height: 1.1;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    margin: 0; 
 }
 
 .hero-text h2 {
-    margin-bottom: 2rem; 
+    margin-bottom: 1.5rem; 
 }
 
 .hero-description {
     color: #ffffff;
     font-size: 1.2rem;
-    max-width: 450px;
+    max-width: 480px;
     margin-bottom: 2rem;
+    line-height: 1.6;
 }
 
 .scan-button {
@@ -42,54 +46,59 @@
     color: #ffffff;
     border: 1px solid #555;
     border-radius: 8px;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
     font-weight: 500;
     cursor: pointer;
     width: fit-content;
-    transition: background-color 0.2s ease;
+    text-decoration: none; 
+    transition: all 0.3s ease;
 }
 
 .scan-button:hover {
-    background-color: #444;
+    background-color: #F2C063;
+    color: #0B1E1A;
+    border-color: #F2C063;
 }
 
 .scan-icon {
-    font-size: 1.2rem;
-    font-weight: bold;
+    font-size: 1.4rem;
 }
 
 .cta-box {
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    background-color: #0B1E1A; 
+    background-color: rgba(11, 30, 26, 0.8); 
     border-radius: 12px;
     padding: 1.5rem;
-    margin-top: 4rem; 
-    margin-right: 1rem;
-    max-width: 80%;
+    margin-top: 3rem; 
+    max-width: 500px; 
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
 .cta-icon {
-    width: 80px;
+    width: 60px;
+    height: auto;
 }
 
 .cta-text p {
     color: #ffffff;
     font-size: 0.9rem;
     line-height: 1.4;
+    margin: 0;
 }
 
 .cta-text p:first-child {
-    font-size: 1.1rem;
-    margin-bottom: 0.25rem;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
 }
 
 .cta-link {
     color: #F2C063;
     text-decoration: underline;
-    font-weight: 500;
+    font-weight: bold;
+    font-size: 0.9rem;
     margin-top: 0.5rem;
     display: inline-block;
 }
@@ -99,11 +108,62 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .hero-image-container img {
     width: 100%;
-    max-width: 900px;
     height: auto;
     object-fit: contain;
+}
+
+
+@media screen and (max-width: 960px) {
+    .hero-section {
+        flex-direction: column; 
+        padding: 120px 2rem 3rem 2rem; 
+        text-align: center; 
+        justify-content: flex-start;
+        height: auto; 
+    }
+
+    .hero-text {
+        width: 100%;
+        align-items: center;
+    }
+
+    .hero-text h1, .hero-text h2 {
+        font-size: 2.7rem; 
+    }
+
+    .hero-description {
+        font-size: 1rem;
+        margin: 1.5rem auto;
+    }
+
+    .scan-button {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .cta-box {
+        flex-direction: column;
+        text-align: center;
+        width: 100%;
+        margin-top: 2rem;
+        padding: 1rem;
+    }
+    
+    .cta-box .cta-text {
+        text-align: center;
+    }
+
+    .hero-image-container {
+        width: 100%;
+        margin-top: 3rem;
+    }
+
+    .hero-image-container img {
+        max-width: 350px;
+    }
 }
