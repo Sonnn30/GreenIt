@@ -55,11 +55,7 @@ function NavBar(){
                             Scan History
                         </NavLink>
                     </li>
-                    
-                    <li>
-                        <NavLink to="/" onClick={() => setMenuOpen(false)}>Bins</NavLink>
-                    </li>
-                    
+
                     <li>
                         <a href="/#about" onClick={() => setMenuOpen(false)}>About</a>
                     </li>
