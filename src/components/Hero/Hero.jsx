@@ -1,10 +1,16 @@
 import React from "react";
 import './Hero.css';
-import { Link } from 'react-router-dom';
+
 import recycleImage from '../../assets/recycle.png'; // Pastikan path benar
 import heroImage from '../../assets/heroimage.png'; // Pastikan path benar
 
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
+
 function Hero(){
+
+    const navigate = useNavigate();
+
     return(
         <section id="home" className="hero-section">
             <div className="hero-text">
@@ -17,7 +23,8 @@ function Hero(){
                     can reduce landfill waste by up to 60%
                 </p>
                 
-                <Link to="/scan-result" className="scan-button">
+                <Link to="/scan-result" className="scan-button"> // this
+                <button className="scan-button" onClick={() => navigate('/camera')}> //this
                     <span className="scan-icon">&#x26F6;</span> 
                     Scan Now
                 </Link>

@@ -1,0 +1,157 @@
+body, html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    /* font-family: 'Inter', sans-serif; */
+}
+
+/* Main Camera Container (Vertical Flexbox for layout)*/
+.camera-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+/* Camera Content Area (The middle section containing video/canvas)*/
+.camera-content-area {
+    flex-grow: 1; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/*Camera Stream Wrapper & Result (Positioned for no jumping)*/
+
+/* Both the camera stream and the result canvas occupy the exact same, centered space */
+.camera-stream,
+.result {
+    /* Use absolute positioning relative to .camera-content-area */
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Ensure the camera stream is visible by default */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px; /* Match the monitor size */
+    height: 300px; /* Match the monitor size */
+}
+
+/* The canvas inside the result area */
+.result canvas {
+    border-radius: 20px;
+    /* Since we set width/height on the parent .result, 
+       the canvas will automatically be the right size. */
+}
+
+/* Fixed Button Bar (The Footer)*/
+.camera-footer {
+    width: 100%;
+    padding: 20px 0;
+    background-color: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+/* General Button Styling */
+.take-photo-button, 
+.result-buttons button {
+    padding: 15px 40px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+/* Style for the main "Scan" button */
+.take-photo-button {
+    background-color: #4CAF50;
+    color: white;
+    min-width: 200px;
+}
+.take-photo-button:hover {
+    background-color: #45a049;
+}
+
+/* Style for the Retake and Process buttons */
+.result-buttons {
+    display: flex;
+    gap: 15px; 
+}
+.result-buttons button {
+    background-color: #555;
+    color: white;
+}
+.result-buttons button:hover {
+    background-color: #666;
+}
+.result-buttons .process-button {
+    background-color: #2196F3; /*main action */
+}
+.result-buttons .process-button:hover {
+    background-color: #0b7dda;
+}
+
+
+/*Camera monitor (Centered content)*/
+#monitor {
+    position: relative;
+    width: 400px;
+    height: 300px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 20px; 
+    overflow: hidden; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* The screen that holds the video */
+#monitor .screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: black;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+/* The video feed itself */
+#monitor video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    display: block;
+}
+
+/* The scanning animation line */
+#monitor .scan {
+    position: absolute;
+    top: 0;
+    left: 1.25%;
+    width: 97.5%;
+    height: 15px;
+    background-color: rgba(0, 255, 255, 0.2);
+    animation: scan 3s linear infinite alternate;
+    border-radius: 50%;
+}
+
+/* The scanning motion animation */
+@keyframes scan {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        /* This needs to be slightly less than the height (300px) minus the scan line height (15px) */
+        transform: translateY(285px); 
+    }
+}
