@@ -7,7 +7,7 @@ import jungleBg from "../../assets/junglebg.png";
 
 function About(){
     return(
-        <section 
+        <section id="about"
             className="about-section"
             style={{ backgroundImage: `url(${jungleBg})` }}
         >

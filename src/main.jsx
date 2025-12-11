@@ -1,10 +1,39 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import './index.css';
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+// Impor Layout
+import App from './App.jsx';
+
+// Impor Halaman-halaman (Pages)
+import HomePage from './pages/HomePage.jsx';
+import ScanResultPage from './pages/ScanResult/ScanResult.jsx'; // Jika page ini ada
+import ScanHistory from './pages/ScanHistory/ScanHistory.jsx';   // <-- 1. TAMBAHKAN INI
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    children: [
+      {
+        path: '/', 
+        element: <HomePage />,
+      },
+      {
+        path: 'scan-result', 
+        element: <ScanResultPage />,
+      },
+      {
+        path: 'scan-history',    
+        element: <ScanHistory />,
+      },
+    ],
+  },
+]);
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <RouterProvider router={router} />
+  </React.StrictMode>
+);

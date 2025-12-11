@@ -1,0 +1,173 @@
+.scan-history-container {
+  padding: 120px 5% 4rem 5%;
+  font-family: sans-serif;
+  color: white;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.history-header h1 {
+  color: #eebb68; 
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.history-header hr {
+  border: 1px solid #4a635e;
+  margin-bottom: 1.5rem;
+}
+
+.filter-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap; 
+}
+
+.filter-label {
+  color: #FFF94F;
+  font-weight: bold;
+}
+
+.filter-btn {
+  background-color: #1f2b28;
+  color: #eebb68;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.9rem;
+  transition: background 0.3s;
+}
+
+.filter-btn:hover {
+  background-color: #2a3b36;
+}
+
+.filter-result {
+  background-color: #eebb68;
+  color: #1f2b28;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  margin-left: auto;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.history-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+  gap: 1.5rem;
+}
+
+.history-card {
+  background-color: #1f2b28; 
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.history-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+}
+
+.card-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  background-color: #f0f0f0;
+}
+
+.card-details {
+  padding: 1rem;
+}
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.card-title-row {
+  gap: 10px; 
+}
+
+.card-title {
+  color: white;
+  font-weight: bold;
+  font-size: 1.05rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bin-icon-marker {
+  width: 24px;  
+  height: 24px; 
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.status-text {
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.status-text.recyclable {
+  color: #4CAF50;
+}
+
+.status-text.not-recyclable {
+  color: #F44336; 
+}
+
+@media screen and (max-width: 768px) {
+  .scan-history-container {
+    padding: 100px 1.5rem 3rem 1.5rem;
+  }
+
+  .history-header h1 {
+    font-size: 2rem;
+  }
+
+  .filter-section {
+    gap: 0.8rem;
+  }
+  
+  .filter-label {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .filter-result {
+    margin-left: 0; 
+    width: 30%; 
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+
+  .history-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); 
+    gap: 1rem;
+  }
+
+  .card-image {
+    height: 140px; 
+  }
+
+  .card-details {
+    padding: 0.8rem; 
+  }
+
+  .card-title {
+    font-size: 0.95rem;
+  }
+}
