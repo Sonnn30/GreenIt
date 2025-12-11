@@ -1,8 +1,8 @@
-
 .stats-section {
   width: 100%;
-  padding: 0rem 2rem; 
+  padding: 0 2rem; 
   background-color: #0B1E1A;
+  box-sizing: border-box;
 }
 
 .stats-container {
@@ -17,7 +17,7 @@
 .stat-item {
   flex: 1; 
   text-align: center;
-  padding: 1rem 2rem; 
+  padding: 0 2rem; 
   border-right: 1px solid #F2C063;
 }
 
@@ -27,12 +27,40 @@
 
 .stat-value {
   color: #F2C063; 
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+  font-size: 3rem; 
+  margin: 0 0 0.5rem 0;
 }
 
 .stat-description {
   color: #e0e0e0; 
-  font-size: 1rem;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .stats-container {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 3rem 0;
+  }
+
+  .stat-item {
+    width: 100%; 
+    padding: 0 0 2rem 0;
+    border-right: none;
+    border-bottom: 1px solid rgba(242, 192, 99, 0.5);
+  }
+
+  .stat-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .stat-value {
+    font-size: 2.5rem;
+  }
+  
+  .stat-description {
+    font-size: 1rem;
+  }
 }
