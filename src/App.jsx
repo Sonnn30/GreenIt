@@ -11,6 +11,7 @@ import About from './components/About/About.jsx'
 import Offer from './components/Offer/Offer.jsx'
 
 import CameraPage from './pages/camera/Camera.jsx';
+import ScanResultPage from './pages/result/ScanResult.jsx';
 
 function HomePageLayout() {
   return(
@@ -30,6 +31,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePageLayout />} />
         <Route path="/camera" element={<CameraPage />} />
+        <Route path="/scan-result" element={<ScanResultPage />} />
       </Routes>
     </BrowserRouter>
   )

@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import './Camera.css'
 
 function CameraPage() {
@@ -7,6 +8,7 @@ function CameraPage() {
     const cameraStreamRef = useRef(null); 
 
     const [hasPhoto, setHasPhoto] = useState(false);
+    const navigate = useNavigate();
     
     // Setup camera stream on mount
     useEffect(() => {
@@ -68,13 +70,27 @@ function CameraPage() {
         const photo = photoRef.current;
         const dataUrl = photo.toDataURL("image/png");
 
-        await fetch("http://localhost:5000/upload", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ image: dataUrl }),
-        });
+        try {
+            const response = await fetch("http://localhost:5000/upload", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ image: dataUrl }),
+            });
 
-        alert("Image sent to backend!");
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || `HTTP error! Status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            
+            //Navigate to the result page, passing the prediction data in the state
+            navigate('/scan-result', { state: { prediction: data.prediction, capturedImage: dataUrl } });
+
+        } catch (error) {
+            console.error("Error sending or processing image:", error);
+            alert(`Error during scan: ${error.message}`);
+        }
     };
 
     return (

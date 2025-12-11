@@ -17,9 +17,9 @@ const __dirname = path.dirname(__filename);
 // use __dirname so it’s always relative to this file
 const uploadDir = path.join(__dirname, "uploads");
 
-// Allow requests from your frontend
+// Allow requests from frontend
 app.use(cors({
-  	origin: "http://localhost:5174" // TODO: change the local host accordingly eg. 5173, 5175, etc
+  	origin: "http://localhost:5173" // TODO: change the local host accordingly eg. 5173, 5175, etc
 }));
 
 // Parse JSON payloads, limit 10 mb
@@ -29,34 +29,38 @@ app.use(bodyParser.json({ limit: "10mb" }));
 app.post("/upload", async (req, res) => {
     try {
         const { image } = req.body;
-
-        // remove the "data:image/png;base64," prefix
         const base64Data = image.replace(/^data:image\/png;base64,/, "");
 
-        // save the image to disk
-
-		// if we only want to store one image
-        // fs.writeFileSync("captured_image.png", base64Data, "base64");
-
-		// if we want to store multiple images
-		const timestamp = Date.now(); // get current time in ms
-		const filename = `photo_${timestamp}.png`;
-		fs.mkdirSync(uploadDir, { recursive: true });
-		fs.writeFileSync(path.join(uploadDir, filename), base64Data, "base64");
+        // if we want to store multiple images
+        const timestamp = Date.now();
+        const filename = `photo_${timestamp}.png`;
+        fs.mkdirSync(uploadDir, { recursive: true });
+        
+        // --- FIX 1: Define filePath correctly ---
+        const filePath = path.join(uploadDir, filename);
+        fs.writeFileSync(filePath, base64Data, "base64");
 
         console.log("Image saved successfully!");
+        
+        // --- FIX 2: image_path needs to be the defined filePath ---
         const result = await axios.post("http://localhost:8000/predict", {
             image_path: filePath
         });
 
+        // --- FIX 3: Return the base64 image data back to the frontend ---
         res.json({
             message: "Prediction complete",
-            result: result.data
+            prediction: result.data,
+            // Include image data so frontend can show the captured image on the result page
+            capturedImageBase64: image 
         });
 
     } catch (error) {
-		console.error("Error saving image:", error);
-		res.status(500).json({ error: "Failed to save image" });
+        console.error("Error in /upload route:", error.message);
+        const status = error.response ? error.response.status : 500;
+        const errorMessage = error.response ? error.response.data.error : "Failed to process image in backend";
+        
+        res.status(status).json({ error: errorMessage });
     }
 });
 
