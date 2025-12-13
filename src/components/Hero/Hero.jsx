@@ -17,7 +17,7 @@ function Hero(){
                     can reduce landfill waste by up to 60%
                 </p>
                 
-                <Link to="/scan-result" className="scan-button">
+                <Link to="/camera" className="scan-button">
                     <span className="scan-icon">&#x26F6;</span> 
                     Scan Now
                 </Link>

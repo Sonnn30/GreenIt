@@ -10,6 +10,7 @@ import App from './App.jsx';
 import HomePage from './pages/HomePage.jsx';
 import ScanResultPage from './pages/ScanResult/ScanResult.jsx'; // Jika page ini ada
 import ScanHistory from './pages/ScanHistory/ScanHistory.jsx';   // <-- 1. TAMBAHKAN INI
+import CameraPage from './pages/Camera/Camera.jsx';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: 'scan-history',    
         element: <ScanHistory />,
+      },
+      {
+        path: 'camera',
+        element: <CameraPage />
       },
     ],
   },
