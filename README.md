@@ -4,6 +4,11 @@ A web-based waste classification application built with **React + Vite** on the 
 
 The app allows users to scan images and receive waste category predictions.
 
+Download the trained model here : https://drive.google.com/drive/folders/1_nEomzP1LT0Sz8gOyqymog9PUSeikJ7h?usp=sharing
+
+or train the model manually
+
+
 
 ## Tech Stack we use on this project
 

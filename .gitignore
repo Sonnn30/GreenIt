@@ -26,3 +26,11 @@ dist-ssr
 #folder
 backend/uploads/*
 
+# ML models
+backend/model/*.joblib
+backend/model/*.pkl
+backend/model/*.h5
+backend/model/*.pt
+backend/model/*.onnx
+
+
