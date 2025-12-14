@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect , useRef} from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import './ScanResult.css';
 
@@ -7,7 +7,7 @@ import './ScanResult.css';
   (acts like frontend config, not backend data)
 */
 
-const CLASS_UI_MAP = { // make sure the name match
+const CLASS_UI_MAP = { // make sure the name match, can be changed later
   "e-waste": {
     title: "E-Waste",
     recyclable: true,
@@ -219,6 +219,8 @@ function ScanResultPage() {
   // null = tertutup semua
   const [openSection, setOpenSection] = useState(null);
 
+  const hasSavedRef = useRef(false);
+
   const toggleSection = (index) => {
     // Jika diklik lagi, tutup. Jika beda, buka yang baru.
     setOpenSection(openSection === index ? null : index);
@@ -237,6 +239,27 @@ function ScanResultPage() {
   // Normalize class name and get UI data
   const classKey = prediction.class_name.toLowerCase();
   const uiData = CLASS_UI_MAP[classKey] || CLASS_UI_MAP.trash;
+
+  useEffect(() => {
+
+    if (hasSavedRef.current) return;
+    hasSavedRef.current = true;
+
+    const history = JSON.parse(localStorage.getItem('scanHistory')) || [];
+
+    const newItem = {
+      id: Date.now(),
+      className: uiData.title,
+      recyclable: uiData.recyclable,
+      bin: uiData.bin,
+      image: capturedImage
+    };
+
+    const updatedHistory = [newItem, ...history].slice(0, 4); //keep 4 only
+
+    localStorage.setItem('scanHistory', JSON.stringify(updatedHistory));
+  }, []);
+
 
   return (
     <div className="scan-page">

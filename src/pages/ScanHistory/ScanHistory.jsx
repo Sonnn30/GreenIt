@@ -8,12 +8,15 @@ import yellowBinImg from '../../assets/yellowtrash.png';
 
 const ScanHistory = () => {
   
-  const historyData = [
-    { id: 1, name: 'Bottle Shampoo', isRecyclable: true, binColor: 'yellow', img: trashimg},
-    { id: 2, name: 'Cardboard', isRecyclable: true, binColor: 'blue', img: trashimg },
-    { id: 3, name: 'Syringe', isRecyclable: false, binColor: 'red', img: trashimg },
-    { id: 4, name: 'Bottle Shampoo', isRecyclable: true, binColor: 'yellow', img: trashimg},
-  ];
+  // const historyData = [
+  //   { id: 1, name: 'Bottle Shampoo', isRecyclable: true, binColor: 'yellow', img: trashimg},
+  //   { id: 2, name: 'Cardboard', isRecyclable: true, binColor: 'blue', img: trashimg },
+  //   { id: 3, name: 'Syringe', isRecyclable: false, binColor: 'red', img: trashimg },
+  //   { id: 4, name: 'Bottle Shampoo', isRecyclable: true, binColor: 'yellow', img: trashimg},
+  // ];
+
+  const historyData = JSON.parse(localStorage.getItem('scanHistory')) || [];
+
 
   const getBinIcon = (color) => {
     switch (color) {
@@ -23,6 +26,13 @@ const ScanHistory = () => {
       default: return redBinImg; 
     }
   };
+
+  const getBinColor = (bin) => {
+    if (bin.includes('yellow')) return 'yellow';
+    if (bin.includes('green') || bin.includes('blue')) return 'blue';
+    return 'red';
+  };
+
 
   return (
     <div className="scan-history-container">
@@ -42,21 +52,21 @@ const ScanHistory = () => {
       <div className="history-grid">
         {historyData.map((item) => (
           <div key={item.id} className="history-card">
-            <img src={item.img} alt={item.name} className="card-image" />
+            <img src={item.image} alt={item.className} className="card-image" />
             
             <div className="card-details">
               <div className="card-row card-title-row">
-                <span className="card-title">{item.name}</span>
+                <span className="card-title">{item.className}</span>
                 <img 
-                  src={getBinIcon(item.binColor)} 
+                  src={getBinIcon(getBinColor(item.bin))}
                   alt={`${item.binColor} bin marker`} 
                   className="bin-icon-marker"
                 />
               </div>
               
               <div className="card-row">
-                <span className={`status-text ${item.isRecyclable ? 'recyclable' : 'not-recyclable'}`}>
-                  {item.isRecyclable ? '♻ Recyclable' : '🚫 Not Recyclable'}
+                <span className={`status-text ${item.recyclable ? 'recyclable' : 'not-recyclable'}`}>
+                  {item.recyclable ? '♻ Recyclable' : '🚫 Not Recyclable'}
                 </span>
               </div>
             </div>

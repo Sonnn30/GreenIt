@@ -31,23 +31,23 @@ app.post("/upload", async (req, res) => {
         const { image } = req.body;
         const base64Data = image.replace(/^data:image\/png;base64,/, "");
 
-        // if we want to store multiple images
+        // if we want to store multiple images, might not be needed rn btw
         const timestamp = Date.now();
         const filename = `photo_${timestamp}.png`;
         fs.mkdirSync(uploadDir, { recursive: true });
         
-        // --- FIX 1: Define filePath correctly ---
+        // Define filepath
         const filePath = path.join(uploadDir, filename);
         fs.writeFileSync(filePath, base64Data, "base64");
 
         console.log("Image saved successfully!");
         
-        // --- FIX 2: image_path needs to be the defined filePath ---
+        // image_path needs to be the defined filePath
         const result = await axios.post("http://localhost:8000/predict", {
             image_path: filePath
         });
 
-        // --- FIX 3: Return the base64 image data back to the frontend ---
+        // Return the base64 image data back to the frontend
         res.json({
             message: "Prediction complete",
             prediction: result.data,
