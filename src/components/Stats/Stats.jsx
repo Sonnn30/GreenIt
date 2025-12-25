@@ -7,7 +7,7 @@ function Stats(){
             <div className="stats-container">
                 
                 <div className="stat-item">
-                    <h2 className="stat-value">98,5%</h2>
+                    <h2 className="stat-value">84%</h2>
                     <p className="stat-description">AI detection accuracy</p>
                 </div>
 
